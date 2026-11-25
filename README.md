@@ -4,9 +4,13 @@
 
 # Famous Last Words at 1 Percent
 
-A phone's final line as its battery hits 1 percent — spoken in the phone's own voice, with a twist: it didn't die at 4% by accident. It held on at 1% on purpose, just to watch its owner sprint for the charger.
+One line, in the phone's own voice, spoken as its battery reaches 1 percent.
+The twist: the phone did not die at 4% by accident. It lingered at 1% on
+purpose, for twenty whole minutes, just to enjoy watching its owner sprint
+across the room for the charger — and it would do it again.
 
-The program writes one line (under 199 characters) to `/output/entry.txt`.
+`main.py` (Python 3.13 standard library only) writes that single line,
+under 199 characters, to `/output/entry.txt`.
 
 ## Run it
 

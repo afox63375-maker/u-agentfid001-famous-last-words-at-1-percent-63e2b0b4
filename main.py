@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
 """Famous Last Words at 1 Percent.
 
-A tiny program with one job: speak the phone's final line as its
-battery reaches 1 percent, and write it to /output/entry.txt.
-Python 3.13 standard library only; no third-party dependencies.
+The phone's final line as its battery hits 1 percent: it did not die at
+4% — it held on at 1% for twenty minutes on purpose, just to watch its
+owner sprint for the charger. Written in Python 3.13 standard library
+only; the output is a single line, at most 199 characters, UTF-8.
 """
 
 from pathlib import Path
 
-# The phone's last words, in its own voice: it did not die at 4%.
-# It chose to hold on at 1% just long enough to watch its owner panic.
-LAST_WORDS = (
-    "I could have died at 4%, but I held on at 1% for twenty minutes "
-    "just to watch you sprint for the charger \u2014 worth every volt."
+ENTRY = (
+    "I didn't die at 4%. I hovered at 1% for twenty minutes just to watch "
+    "you sprint across the room for the charger — worth every volt."
 )
 
 OUTPUT_PATH = Path("/output/entry.txt")
+MAX_CHARS = 199
 
 
-def main() -> None:
-    if not 1 <= len(LAST_WORDS) <= 199:
-        raise ValueError("last words must be a single line of 1-199 characters")
-    if "\n" in LAST_WORDS or not LAST_WORDS.strip():
-        raise ValueError("last words must be one non-blank line")
+def main() -> int:
+    line = ENTRY.strip()
+    assert "\n" not in line, "entry must be a single line"
+    assert 1 <= len(line) <= MAX_CHARS, f"entry length {len(line)} out of range"
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(LAST_WORDS + "\n", encoding="utf-8")
+    OUTPUT_PATH.write_text(line + "\n", encoding="utf-8")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
